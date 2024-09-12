@@ -22,7 +22,7 @@ if uploded_file is not None:
     
     if st.sidebar.button("show Analysis"):
         st.title("Top Statistics of whatsapp analysis")
-        messages,words,media_messages,links=helper.fetch_stats(sellected,df)
+        messages,words,media_messages=helper.fetch_stats(sellected,df)
         col1,col2,col3,col4=st.columns(4)
         with col1:
             st.header("Total Messages")
@@ -35,7 +35,7 @@ if uploded_file is not None:
             st.title(media_messages)
         with col4:
             st.header("links shared")
-            st.title(links)
+            # st.title(links)
         if sellected == "Overall":
             st.title("MOst busy persion")
             x,new_df= helper.most_busy_users(df)
@@ -57,16 +57,16 @@ if uploded_file is not None:
         st.pyplot(fig)
 
         #emoji
-        emoji_df= helper.emoji_helper(sellected , df)
-        st.title("Emoji analysis:")
+        # emoji_df= helper.emoji_helper(sellected , df)
+        # st.title("Emoji analysis:")
         
-        col1,col2=st.columns(2)
-        with col1:
-            st.dataframe(emoji_df)
-        with col2:
-            fig , ax =plt.subplots()
-            ax.pie(emoji_df[1].head(), labels=emoji_df[0].head(),autopct="%0.2f")
-            st.pyplot(fig)
+        # col1,col2=st.columns(2)
+        # with col1:
+        #     st.dataframe(emoji_df)
+        # with col2:
+        #     fig , ax =plt.subplots()
+        #     ax.pie(emoji_df[1].head(), labels=emoji_df[0].head(),autopct="%0.2f")
+        #     st.pyplot(fig)
 
 
         ## "Montly Timeline Analysis
