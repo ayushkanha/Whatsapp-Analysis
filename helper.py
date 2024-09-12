@@ -1,7 +1,7 @@
-from urlextract import URLExtract
+# from urlextract import URLExtract
 import pandas as pd
 from collections import Counter
-import emoji
+# import emoji
 def fetch_stats(selected,df):
     if selected !="Overall":
         df =df[df['user']==selected]
@@ -18,10 +18,10 @@ def fetch_stats(selected,df):
     media_messsages=(df[df['messages']=="<Media omitted>\r\n"].shape[0])+(df[df['messages']=="<Media omitted>\r\n\r\n"].shape[0])+(df[df['messages']=="<Media omitted>\n"].shape[0])
     
     #url extraction
-    extractor=URLExtract()
-    for message in df['messages']:
-        links.extend(extractor.find_urls(message))
-    return messages,len(word),media_messsages,len(links)
+    # extractor=URLExtract()
+    # for message in df['messages']:
+    #     links.extend(extractor.find_urls(message))
+    return messages,len(word),media_messsages
 
 def most_busy_users(df):
     x=df['user'].value_counts().head()
@@ -44,13 +44,13 @@ def most_common_words(selected,df):
     most_common_df=pd.DataFrame(Counter(words).most_common(25))            
     return most_common_df
 
-def emoji_helper(selected , df):
-    if selected !="Overall":
-        df =df[df['user']==selected]
-    emojis=[]
-    for message in df['messages']:
-        emojis.extend([c  for c in message if c in emoji.EMOJI_DATA])
-    return pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
+# def emoji_helper(selected , df):
+#     if selected !="Overall":
+#         df =df[df['user']==selected]
+#     emojis=[]
+#     for message in df['messages']:
+#         emojis.extend([c  for c in message if c in emoji.EMOJI_DATA])
+#     return pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
 
 def monthly_timeline(selected,df):
     if selected !="Overall":
